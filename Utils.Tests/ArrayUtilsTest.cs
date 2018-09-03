@@ -114,5 +114,23 @@ namespace Utils.Tests
             var actualResult = array.IsSorted(isAscendingOrder);
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Theory]
+        [InlineData(new[] { 0 }, 1)]
+        [InlineData(new[] { 0, 1 }, 2)]
+        [InlineData(new[] { 0, 1, 2 }, 3)]
+        public void Count_ReturnsExpectedResult(int[] array, int expectedResult)
+        {
+            var actualResult = array.Count();
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void Count_ThrowsArgumentNullException()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() => ArrayUtils.Count<int>(null));
+            Assert.Equal("array", ex.ParamName);
+        }
+
     }
 }

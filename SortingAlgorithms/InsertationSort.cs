@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Utils;
 
 namespace SortingAlgorithms
 {
     public class InsertationSort<T> : ISortingAlgorithm<T> where T : IComparable<T>
     {
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection is null)
-                throw new ArgumentNullException(nameof(collection));
-
-            if (!(collection is T[] arrayToSort))
-                throw new InvalidCastException();
+            if (arrayToSort is null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
             for (var i = 1; i < arrayToSort.Count(); i++)
                 //Starting from current index we compare two neighborhood elements. In case they are unordered we swap them. 

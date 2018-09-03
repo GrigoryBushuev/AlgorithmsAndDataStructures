@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using Utils;
 
 namespace SortingAlgorithms
 {
     public class QuickSort<T> : ISortingAlgorithm<T> where T : IComparable<T>
     {
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection is null)
-                throw new ArgumentNullException(nameof(collection));
+            if (arrayToSort is null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
-            if (!(collection is T[] arrayToSort))
-                throw new InvalidCastException(nameof(collection));
-
-            Sort(arrayToSort, 0, arrayToSort.Length - 1);
+            Sort(arrayToSort, 0, arrayToSort.Count() - 1);
         }
 
         private int Partition(T[] arrayToSort, int lo, int hi)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Utils;
 
 namespace SortingAlgorithms
@@ -15,13 +14,10 @@ namespace SortingAlgorithms
     {
         private const int insertationSortConst = 5;
 
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-
-            if (!(collection is T[] arrayToSort))
-                throw new InvalidCastException(nameof(collection));
+            if (arrayToSort == null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
             //1. Create the auxiliary to copy sorted elements
             var auxiliaryArray = new T[arrayToSort.Length];

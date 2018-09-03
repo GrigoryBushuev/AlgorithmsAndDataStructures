@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SortingAlgorithms
 {
@@ -7,13 +6,10 @@ namespace SortingAlgorithms
     {
         private T[] _auxiliaryArray = null;
 
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection is null)
-                throw new ArgumentNullException(nameof(collection));
-
-            if (!(collection is T[] arrayToSort))
-                throw new InvalidCastException(nameof(collection));
+            if (arrayToSort is null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
             var length = arrayToSort.Length;
             _auxiliaryArray = new T[length];

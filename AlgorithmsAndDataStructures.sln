@@ -15,9 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Tests", "DataStructures.Tests\DataStructures.Tests.csproj", "{AF0F7B36-F855-4AC3-A58A-213466B46771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Tests", "Utils.Tests\Utils.Tests.csproj", "{DCC1E068-4235-4C0A-AA85-7DB30BB3F856}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.Tests", "Utils.Tests\Utils.Tests.csproj", "{DCC1E068-4235-4C0A-AA85-7DB30BB3F856}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicConnectivity.Tests", "DynamicConnectivity.Tests\DynamicConnectivity.Tests.csproj", "{A63F8DF5-28D8-4561-807A-36A4F08F940A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicConnectivity.Tests", "DynamicConnectivity.Tests\DynamicConnectivity.Tests.csproj", "{A63F8DF5-28D8-4561-807A-36A4F08F940A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms.Tests", "SortingAlgorithms.Tests\SortingAlgorithms.Tests.csproj", "{E445E6D7-D4E3-4F05-8151-8D6159282737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{A63F8DF5-28D8-4561-807A-36A4F08F940A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A63F8DF5-28D8-4561-807A-36A4F08F940A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A63F8DF5-28D8-4561-807A-36A4F08F940A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E445E6D7-D4E3-4F05-8151-8D6159282737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E445E6D7-D4E3-4F05-8151-8D6159282737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E445E6D7-D4E3-4F05-8151-8D6159282737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E445E6D7-D4E3-4F05-8151-8D6159282737}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{AF0F7B36-F855-4AC3-A58A-213466B46771} = {1D717A67-5CDE-4796-8449-F72865AC2143}
 		{DCC1E068-4235-4C0A-AA85-7DB30BB3F856} = {1D717A67-5CDE-4796-8449-F72865AC2143}
 		{A63F8DF5-28D8-4561-807A-36A4F08F940A} = {1D717A67-5CDE-4796-8449-F72865AC2143}
+		{E445E6D7-D4E3-4F05-8151-8D6159282737} = {1D717A67-5CDE-4796-8449-F72865AC2143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C181AE3-D5B1-4A59-8149-D10F9A542C10}

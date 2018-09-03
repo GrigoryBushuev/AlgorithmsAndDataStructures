@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using Utils;
 
 namespace SortingAlgorithms
 {
     public class ShellSort<T> : ISortingAlgorithm<T> where T : IComparable<T>
     {
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection is null)
-                throw new ArgumentNullException(nameof(collection));
-
-            if (!(collection is T[] arrayToSort))
-                throw new InvalidCastException(nameof(collection));
+            if (arrayToSort is null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
             var k = 1;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SortingAlgorithms
 {
@@ -7,24 +6,21 @@ namespace SortingAlgorithms
     {
         private T[] _auxiliaryArray;
 
-        public void Sort(IEnumerable<T> collection)
+        public void Sort(T[] arrayToSort)
         {
-            if (collection is null)
-                throw new ArgumentNullException(nameof(collection));
+            if (arrayToSort is null)
+                throw new ArgumentNullException(nameof(arrayToSort));
 
-            if (!(collection is T[] arr))
-                throw new InvalidCastException(nameof(collection));
-
-            _auxiliaryArray = new T[arr.Length];
+            _auxiliaryArray = new T[arrayToSort.Length];
 
             var lo = 0;
-            var mid = arr.Length - 1;
-            var hi = arr.Length - 1;
+            var mid = arrayToSort.Length - 1;
+            var hi = arrayToSort.Length - 1;
 
-            while (lo < arr.Length)
+            while (lo < arrayToSort.Length)
             {
-                mid = GetNextSentinelIndex(arr, lo);
-                if (mid == arr.Length - 1)
+                mid = GetNextSentinelIndex(arrayToSort, lo);
+                if (mid == arrayToSort.Length - 1)
                 {
                     if (lo > 0)
                     {
@@ -34,10 +30,10 @@ namespace SortingAlgorithms
                     else
                         break;
                 }
-                hi = GetNextSentinelIndex(arr, mid + 1);
-                Merge(arr, lo, mid, hi);
+                hi = GetNextSentinelIndex(arrayToSort, mid + 1);
+                Merge(arrayToSort, lo, mid, hi);
 
-                if (hi == arr.Length - 1)
+                if (hi == arrayToSort.Length - 1)
                     lo = 0;
                 else
                     lo = hi + 1;
