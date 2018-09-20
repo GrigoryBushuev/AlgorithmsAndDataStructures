@@ -76,6 +76,8 @@ namespace DataStructures.Nonlinear.Trees
             return _heap[1];
         }
 
+        public int Size => _lastIndex;
+
         private void Sink()
         {
             _heap[1] = _heap[_lastIndex];
