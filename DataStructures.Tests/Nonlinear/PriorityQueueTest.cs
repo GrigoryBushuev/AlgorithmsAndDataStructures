@@ -1,4 +1,5 @@
 ﻿using DataStructures.Nonlinear.Trees;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -22,9 +23,21 @@ namespace DataStructures.Tests.Nonlinear
             _priorityQueue = new PriorityQueue<int>(new TestComparer());
         }
 
+        [Fact]
+        public void PriorityQueue_Generic_Constructor_ComparerIsNull_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>("comparer", () => new PriorityQueue<int>(null));
+        }
 
         [Fact]
-        public void Size_OnEnqueue_ReturnsExpectedResult()
+        public void PriorityQueue_Generic_Peek_OnEmptyQueue_ThrowsInvalidOperationException()
+        {
+            var pq = new PriorityQueue<int>(new TestComparer());
+            Assert.Throws<InvalidOperationException>(() => pq.Peek());
+        }
+
+        [Fact]
+        public void Enqueue_ReturnsExpectedResult()
         {
             _priorityQueue.Enqueue(1);
             var actualResult = _priorityQueue.Size;

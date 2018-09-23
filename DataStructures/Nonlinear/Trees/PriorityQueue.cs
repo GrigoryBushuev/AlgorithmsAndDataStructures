@@ -39,53 +39,59 @@ namespace DataStructures.Nonlinear.Trees
     {
         private T[] _heap;
         private readonly IComparer<T> _comparer;
-        private int _lastIndex = 0;
+        private int _initSize;
 
         public PriorityQueue(IComparer<T> comparer, int initSize = 1)
         {
-            _comparer = comparer;
+            _comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
+            _initSize = initSize;
             _heap = new T[initSize + 1];
         }
 
         public void Enqueue(T item)
         {
-            if (_lastIndex == _heap.Length - 1)
+            if (Size == _heap.Length - 1)
                 Array.Resize(ref _heap, _heap.Length << 1);
-            _lastIndex++;
+            Size++;
             Swim(item);
+        }
+
+        public void Clear()
+        {
+            Array.Clear(_heap, 0, _heap.Length);
         }
 
         public T Dequeue()
         {
-            if (_lastIndex == 0)
+            if (Size == 0)
                 throw new InvalidOperationException("The queue is empty");
             var item = _heap[1];
             Sink();
-            _heap[_lastIndex] = default(T);
-            _lastIndex--;
-            if (_lastIndex < _heap.Length >> 1)
+            _heap[Size] = default(T);
+            Size--;
+            if (Size < _heap.Length >> 1)
                 Array.Resize(ref _heap, _heap.Length >> 1);
             return item;
         }
 
         public T Peek()
         {
-            if (_lastIndex == 0)
+            if (Size == 0)
                 throw new InvalidOperationException("The queue is empty");
 
             return _heap[1];
         }
 
-        public int Size => _lastIndex;
+        public int Size { get; private set; } = 0;
 
         private void Sink()
         {
-            _heap[1] = _heap[_lastIndex];
+            _heap[1] = _heap[Size];
             var item = _heap[1];
             var leftIndex = 1;
             var rightIndex = 2;
 
-            while (rightIndex < _lastIndex && _comparer.Compare(_heap[leftIndex], _heap[rightIndex]) > 0)
+            while (rightIndex < Size && _comparer.Compare(_heap[leftIndex], _heap[rightIndex]) > 0)
             {
                 if (_comparer.Compare(_heap[rightIndex], _heap[rightIndex + 1]) > 0)
                     rightIndex++;
@@ -97,8 +103,8 @@ namespace DataStructures.Nonlinear.Trees
 
         private void Swim(T item)
         {
-            _heap[_lastIndex] = item;
-            var rightIndex = _lastIndex;
+            _heap[Size] = item;
+            var rightIndex = Size;
             var leftIndex = rightIndex >> 1;
             while (leftIndex > 0 && _comparer.Compare(item, _heap[leftIndex]) < 0)
             {
