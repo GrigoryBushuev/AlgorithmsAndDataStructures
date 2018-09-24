@@ -91,13 +91,18 @@ namespace DataStructures.Nonlinear.Trees
             var leftIndex = 1;
             var rightIndex = 2;
 
-            while (rightIndex < Size && _comparer.Compare(_heap[leftIndex], _heap[rightIndex]) > 0)
+            while (rightIndex < Size)
             {
                 if (_comparer.Compare(_heap[rightIndex], _heap[rightIndex + 1]) > 0)
                     rightIndex++;
-                _heap.Swap(leftIndex, rightIndex);
-                leftIndex = rightIndex;
-                rightIndex <<= 1;
+
+                if (_comparer.Compare(_heap[leftIndex], _heap[rightIndex]) > 0)
+                {
+                    _heap.Swap(leftIndex, rightIndex);
+                    leftIndex = rightIndex;
+                    rightIndex <<= 1;
+                }
+                else break;
             }
         }
 

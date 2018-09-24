@@ -37,17 +37,46 @@ namespace DataStructures.Tests.Nonlinear
         }
 
         [Fact]
-        public void Enqueue_ReturnsExpectedResult()
+        public void PriorityQueue_Generic_Dequeue_OnEmptyQueue_ThrowsInvalidOperationException()
         {
-            _priorityQueue.Enqueue(1);
-            var actualResult = _priorityQueue.Size;
-            Assert.Equal(1, actualResult);
-            _priorityQueue.Enqueue(2);
-            actualResult = _priorityQueue.Size;
-            Assert.Equal(2, actualResult);
-            _priorityQueue.Enqueue(3);
-            actualResult = _priorityQueue.Size;
-            Assert.Equal(3, actualResult);
+            var pq = new PriorityQueue<int>(new TestComparer());
+            Assert.Throws<InvalidOperationException>(() => pq.Dequeue());
+        }
+
+        [Theory]
+        [InlineData(new[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 7, 8)]
+        [InlineData(new[] { 7, 6, 5, 4, 3, 2, 1, 0 }, 7, 8)]
+        [InlineData(new[] { 4, 2, 5, 6, 7, 0, 1, 3 }, 7, 8)]
+        public void Enqueue_ReturnsExpectedResult(int[] items, int expectedPeekValue, int expectedSize)
+        {
+            for (var i = 0; i < items.Length; i++)
+            {
+                _priorityQueue.Enqueue(items[i]);
+
+            }
+            Assert.Equal(expectedSize, _priorityQueue.Size);
+            Assert.Equal(expectedPeekValue, _priorityQueue.Peek());
+        }
+
+        [Theory]
+        [InlineData(new[] { 1, 2, 3, 4, 5, 6, 7 }, new[] { 7, 6, 5, 4, 3, 2, 1 }, new[] { 6, 5, 4, 3, 2, 1 }, new[] { 6, 5, 4, 3, 2, 1, 0 })]
+        [InlineData(new[] { 7, 6, 5, 4, 3, 2, 1, 0 }, new[] { 7, 6, 5, 4, 3, 2, 1, 0 }, new[] { 6, 5, 4, 3, 2, 1, 0 }, new[] { 7, 6, 5, 4, 3, 2, 1, 0 })]
+        [InlineData(new[] { 4, 2, 5, 6, 7, 0, 1, 3 }, new[] { 7, 6, 5, 4, 3, 2, 1, 0 }, new[] { 6, 5, 4, 3, 2, 1, 0 }, new[] { 7, 6, 5, 4, 3, 2, 1, 0 })]
+        public void Dequeue_ReturnsExpectedResult(int[] items, int[] expectedDequeueValues, int[] expectedPeekValues, int[] expectedSizes)
+        {
+            for (var i = 0; i < items.Length; i++)
+            {
+                _priorityQueue.Enqueue(items[i]);
+            }
+
+            for (var i = 0; i < items.Length; i++)
+            {
+                var actualDequeuedValue = _priorityQueue.Dequeue();
+                Assert.Equal(expectedDequeueValues[i], actualDequeuedValue);
+                Assert.Equal(expectedSizes[i], _priorityQueue.Size);
+                if (i < items.Length - 1)
+                    Assert.Equal(expectedPeekValues[i], _priorityQueue.Peek());
+            }
         }
     }
 }
