@@ -59,6 +59,7 @@ namespace DataStructures.Nonlinear.Trees
         public void Clear()
         {
             Array.Clear(_heap, 0, _heap.Length);
+            Size = 0;
         }
 
         public T Dequeue()

@@ -103,5 +103,20 @@ namespace DataStructures.Tests.Nonlinear
             Assert.Equal(expectedDequeuedPeekValue, _priorityQueue.Peek());
             Assert.Equal(expectedDequeuedSize, _priorityQueue.Size);
         }
+
+        [Theory]
+        [InlineData(new[] { 1, 2, 3, 5 }, 4, 0)]
+        [InlineData(new[] { 7, 6, 3 }, 3, 0)]
+        [InlineData(new[] { 4, 2 }, 2, 0)]
+        public void Clear_ReturnsExpectedResult(int[] items, int beforeClearSize, int afterClearSize)
+        {
+            foreach (var item in items)
+            {
+                _priorityQueue.Enqueue(item);
+            }
+            Assert.Equal(beforeClearSize, _priorityQueue.Size);
+            _priorityQueue.Clear();
+            Assert.Equal(afterClearSize, _priorityQueue.Size);
+        }
     }
 }
